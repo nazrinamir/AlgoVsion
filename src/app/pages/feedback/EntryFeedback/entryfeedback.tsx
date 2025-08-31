@@ -57,7 +57,7 @@ const Entryfeedback = () => {
       placeholder: "Enter Your Email",
       type: "text",
       value: email,
-      info: information.email({}), // or <span>Enter Your Email</span>
+      info: information.email(), // or <span>Enter Your Email</span>
     },
     {
       id: "phone",
@@ -65,7 +65,7 @@ const Entryfeedback = () => {
       placeholder: "Enter Your Phone Number",
       type: "text",
       value: phone,
-      info: information.phone({}), // or <span>Enter Your Phone Number</span>
+      info: information.phone(), // or <span>Enter Your Phone Number</span>
     },
   ];
 
@@ -79,6 +79,7 @@ const Entryfeedback = () => {
     );
     if (result.kind === "errors") {
       setErrors(result.errors);
+      console.log(result.errors);
     } else {
       setErrors([]);
       setButtonActive(false);
@@ -89,7 +90,7 @@ const Entryfeedback = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 p-2 bg-zinc-950 border-dashed border-white border-2 rounded-md w-[40%] *:text-white"
+      className="flex flex-col gap-4 p-2 bg-zinc-950 border-dashed border-white border-2 rounded-xl w-[40%] *:text-white"
     >
       <label className="text-white w-full text-center text-2xl font-bold tracking-wider p-2">
         feedback details
@@ -120,14 +121,14 @@ const Entryfeedback = () => {
       </div>
 
       {/* 5) make the button an actual submit button (no double-calls) */}
-      <algoButton.button1 txt="Submit" active={buttonActive} />
+      <algoButton.button1 handleClick={(e: React.FormEvent<HTMLButtonElement>) => handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>)} txt="Submit" active={buttonActive} />
 
       <div>
-        <p className="text-sm text-slate-300/20">
-          Filled up the form to submit the feedback to continue the process.
+        <p className="text-sm text-white">
+          Already filled up the form? Click the <a href="#find-me" className="text-lime-300/90 hover:cursor-pointer">find me</a>.
         </p>
-        <p className="text-sm text-slate-300/20">
-          Already filled up the form? Click the <a className="text-lime-300/20 hover:cursor-pointer">find me</a>.
+        <p className="text-sm text-slate-300/50">
+          * Filled up the form to submit the feedback to continue the process.
         </p>
       </div>
     </form>

@@ -4,11 +4,13 @@ const BUTTON_COLOR_INACTIVE = "opacity-50 pointer-events-none hover:cursor-not-a
 const BUTTON_DESIGN = "text-white px-4 py-2 rounded-md z-20"
 
 export const algoButton = {
-  button1: ({ txt, active }: { txt: string; active: boolean; }) => {
+  button1: ({ txt, active, handleClick }: { txt: string; active: boolean; handleClick: (e: React.FormEvent<HTMLButtonElement>) => void; }) => {
     return (
       <>
         <button
           className={`relative ${BUTTON_COLOR} ${BUTTON_COLOR_HOVER} ${active ? "" : BUTTON_COLOR_INACTIVE} ${BUTTON_DESIGN}`} type='button'
+          onClick={(e: React.FormEvent<HTMLButtonElement>) => handleClick(e)}
+          disabled={!active}
         >
           {txt}
         </button>
