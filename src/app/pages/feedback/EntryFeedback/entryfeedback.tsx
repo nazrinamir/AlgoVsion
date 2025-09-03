@@ -27,7 +27,6 @@ const Entryfeedback = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  // 2) create helper once
   const entryfeedbackHelper = useMemo(
     () => new EntryfeedbackHelper(new ValidationUseCase(), new SubmitUseCase()),
     []
@@ -41,7 +40,7 @@ const Entryfeedback = () => {
     setButtonActive(true);
   };
 
-  // 3) pass React nodes for all 'info' values
+
   const INPUT_DETAILS: IInputDetails[] = [
     {
       id: "name",
@@ -57,7 +56,7 @@ const Entryfeedback = () => {
       placeholder: "Enter Your Email",
       type: "text",
       value: email,
-      info: information.email(), // or <span>Enter Your Email</span>
+      info: information.email(), 
     },
     {
       id: "phone",
@@ -65,11 +64,11 @@ const Entryfeedback = () => {
       placeholder: "Enter Your Phone Number",
       type: "text",
       value: phone,
-      info: information.phone(), // or <span>Enter Your Phone Number</span>
+      info: information.phone(), 
     },
   ];
 
-  // 4) prevent form reload; use discriminated union from earlier helper
+  
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const result = await entryfeedbackHelper.validateAndSubmit(
@@ -83,14 +82,13 @@ const Entryfeedback = () => {
     } else {
       setErrors([]);
       setButtonActive(false);
-      // success UX here (toast, reset, etc.)
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 p-2 bg-zinc-950 border-dashed border-white border-2 rounded-xl w-[40%] *:text-white"
+      className="flex flex-col gap-4 p-2 bg-black border-dashed border-white border-2 rounded-xl w-[40%] *:text-white"
     >
       <label className="text-white w-full text-center text-2xl font-bold tracking-wider p-2">
         feedback details

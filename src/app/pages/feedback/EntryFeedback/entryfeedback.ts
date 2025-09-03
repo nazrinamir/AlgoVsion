@@ -12,19 +12,6 @@ type SubmitResult = { kind: "errors"; errors: IErrEntryFeedback[] } | { kind: "s
       await this.submitUseCase.execute(name, email, phone);
       return { kind: "success" };
     }
-
-    private validate(name: string, email: string, phone: string): IErrEntryFeedback[] {
-      const errors = this.validationUseCase.validate(name, email, phone);
-      if (errors.length > 0) {
-        return errors;
-      }
-      return [];
-    }
-
-    private submit(name: string, email: string, phone: string): string {
-      this.submitUseCase.execute(name, email, phone);
-      return "success";
-    }
   
   }
   
